@@ -1,0 +1,53 @@
+simulation:
+  random_seed: 42
+  num_users: 10000
+  num_products: 50000
+  num_logs: 1000000
+  start_date: "2023-01-01"
+  end_date: "2023-12-31"
+
+categories:
+  의류:
+    상의: ["티셔츠", "셔츠", "니트"]
+    하의: ["청바지", "슬랙스", "스커트"]
+  전자제품:
+    모바일: ["스마트폰", "태블릿", "웨어러블"]
+    PC: ["노트북", "모니터", "키보드"]
+
+personas:
+  트렌드세터:
+    weight: 0.15
+    preferred_categories: ["의류"]
+    price_sensitivity: "low"
+    conversion_rate_multiplier: 1.2
+  실용주의자:
+    weight: 0.25
+    preferred_categories: ["의류", "전자제품"]
+    price_sensitivity: "medium"
+    conversion_rate_multiplier: 1.0
+  가성비추구:
+    weight: 0.20
+    preferred_categories: ["전자제품", "의류"]
+    price_sensitivity: "high"
+    conversion_rate_multiplier: 0.7
+  브랜드충성:
+    weight: 0.15
+    preferred_categories: ["전자제품"]
+    price_sensitivity: "low"
+    conversion_rate_multiplier: 1.5
+  충동구매:
+    weight: 0.10
+    preferred_categories: ["의류"]
+    price_sensitivity: "low"
+    conversion_rate_multiplier: 2.0
+  신중탐색:
+    weight: 0.15
+    preferred_categories: ["전자제품"]
+    price_sensitivity: "high"
+    conversion_rate_multiplier: 0.5
+
+transition_probs:
+  search: {"view": 0.6, "search": 0.3, "exit": 0.1}
+  view: {"cart": 0.2, "search": 0.4, "view": 0.2, "exit": 0.2}
+  cart: {"purchase": 0.3, "view": 0.4, "exit": 0.3}
+  purchase: {"exit": 1.0}
